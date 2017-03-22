@@ -79,10 +79,20 @@ else:
     raise Exception("FAILED: getNextEventURL on closed.html found something, but shouldn't have")
 
 
-if getRedirectURL('http://ultrasignup.com/register.aspx?eid=4327') == "https://ultrasignup.com/register.aspx?did=41232":
+testgetRedirectURL = getRedirectURL('http://ultrasignup.com/register.aspx?eid=4327')
+if testgetRedirectURL == "http://ultrasignup.com/register.aspx?did=41232":
     print("getRedirectURL PASS")
 else:
-    raise Exception("FAILED: getRedirectURL on 'http://ultrasignup.com/register.aspx?eid=4327' does not find 'https://ultrasignup.com/register.aspx?did=41232'")
+    print("getRedirectURL returned: ", testgetRedirectURL)
+    raise Exception("FAILED: getRedirectURL on 'http://ultrasignup.com/register.aspx?eid=4327' does not find 'http://ultrasignup.com/register.aspx?did=41232'")
+
+testgetRedirectURL = getRedirectURL('https://ultrasignup.com/register.aspx?eid=4327')
+if testgetRedirectURL == "https://ultrasignup.com/register.aspx?did=41232":
+    print("getRedirectURL PASS")
+else:
+    print("getRedirectURL returned: ", testgetRedirectURL)
+    raise Exception("FAILED: getRedirectURL on 'https://ultrasignup.com/register.aspx?eid=4327' does not find 'https://ultrasignup.com/register.aspx?did=41232'")
+
 
 #url gets replaced in db, when its identified as a previous race
 #new url gets tested after its identified and replaced

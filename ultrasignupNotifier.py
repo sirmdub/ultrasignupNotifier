@@ -46,4 +46,5 @@ def getNextEventURL(html):
         return "i got nothing"
 
 def getRedirectURL(url):
-    return "i got nothing"
+    page = requests.get(url)
+    return page.url
