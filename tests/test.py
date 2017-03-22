@@ -23,3 +23,10 @@ if not registrationOpen("<html><itsOPEN>Registration closes</itsOPEN></html>"):
 
 if registrationOpen("<html><itsNOT>Registration Opens</itsNOT></html>"):
     raise Exception("FAILED: registrationOpen thinks a closed race is open for registration")
+
+#test registrationOpen on html files (open, closed, previous, soldout)
+
+#previous test cases
+#identify its a previous race
+#url gets replaced in db, when its identified as a previous race
+#new url gets tested after its identified and replaced
