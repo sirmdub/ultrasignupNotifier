@@ -4,6 +4,7 @@ to watch ultrasignup for race registration opening
 
 ### Todo
 
+- [ ] Notification code
 - [ ] Deploy Script
 
 ### Race Registration Check Workflow
