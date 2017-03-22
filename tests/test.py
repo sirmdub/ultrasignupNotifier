@@ -64,10 +64,17 @@ else:
     raise Exception("FAILED: isNextEventAvailable on closed.html does not identify correctly")
 
 
-if getNextEventURL(fileToString('tests/previous.html')) == "/register.aspx?eid=4327":
+testgetNextEventURL = getNextEventURL(fileToString('tests/previous.html'))
+if testgetNextEventURL == "/register.aspx?eid=4327":
     print("getNextEventURL PASS")
 else:
+    print("getNextEventURL returned: ", testgetNextEventURL)
     raise Exception("FAILED: getNextEventURL on previous.html does not find '/register.aspx?eid=4327'")
+
+if getRedirectURL('http://ultrasignup.com/register.aspx?eid=4327') == "https://ultrasignup.com/register.aspx?did=41232":
+    print("getRedirectURL PASS")
+else:
+    raise Exception("FAILED: getRedirectURL on 'http://ultrasignup.com/register.aspx?eid=4327' does not find 'https://ultrasignup.com/register.aspx?did=41232'")
 
 #url gets replaced in db, when its identified as a previous race
 #new url gets tested after its identified and replaced

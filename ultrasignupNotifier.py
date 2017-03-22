@@ -37,4 +37,12 @@ def isNextEventAvailable(html):
     return True if searchObj else False
 
 def getNextEventURL(html):
+    searchObj = re.search( r'ContentPlaceHolder1_hlCurrentEventPage" class="errormessage" href="/register.aspx\?eid=\d+"', html)
+    if searchObj:
+        searchObj2 = re.search(r'/register.aspx\?eid=\d+', searchObj.group())
+        return searchObj2.group()
+    else:
+        return "i got nothing"
+
+def getRedirectURL(url):
     return "i got nothing"
