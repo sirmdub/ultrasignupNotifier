@@ -15,18 +15,23 @@ r = redis.StrictRedis(host=redis_host)
 
 def main(event, context):
     #get list of urls from db
-    #for each url in db, processRace(url)
+    #for each url in db,
+    #html = Get race http page
+    #processRace(html)
     print("do stuff")
 
-def processRace(url):
-    print("processing ", url)
-    #html = Get race http page
-    #if registrationOpen(html)
-      # Send notification, Registration is Open
-    #elsif isNextEventAvailable(html)
-      #nexturl = getRedirectURL(getNextEventURL(html))
-      #replaceURL(url, nexturl)
-      #processRace(nexturl)
+def processRace(html, url=None):
+    if registrationOpen(html):
+        processRaceStatus = 'open'
+        # Send notification, Registration is Open
+    else:
+        processRaceStatus = 'closed'
+        if isNextEventAvailable(html):
+            nexturl = getRedirectURL('https://ultrasignup.com' + getNextEventURL(html))
+            replaceURL(url, nexturl)
+            processRaceStatus = 'previous'
+            #processRace(nexturl)
+    return processRaceStatus
 
 def setURL(url, setName):
     print("posting ", url, " to the Redis db")

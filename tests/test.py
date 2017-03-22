@@ -94,5 +94,26 @@ else:
     raise Exception("FAILED: getRedirectURL on 'https://ultrasignup.com/register.aspx?eid=4327' does not find 'https://ultrasignup.com/register.aspx?did=41232'")
 
 
+testprocessRace = processRace(fileToString('tests/open.html'))
+if testprocessRace == 'open':
+    print("testprocessRace PASS")
+else:
+    print("processRace returned: ", testprocessRace)
+    raise Exception("FAILED: processRace on open.html did not return open")
+
+testprocessRace = processRace(fileToString('tests/closed.html'))
+if testprocessRace == 'closed':
+    print("testprocessRace PASS")
+else:
+    print("processRace returned: ", testprocessRace)
+    raise Exception("FAILED: processRace on closed.html did not return closed")
+
+testprocessRace = processRace(fileToString('tests/previous.html'))
+if testprocessRace == 'previous':
+    print("testprocessRace PASS")
+else:
+    print("processRace returned: ", testprocessRace)
+    raise Exception("FAILED: processRace on previous.html did not return previous")
+
 #url gets replaced in db, when its identified as a previous race
 #new url gets tested after its identified and replaced
