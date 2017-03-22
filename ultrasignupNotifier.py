@@ -14,7 +14,19 @@ redis_host = config.get("access", "redis_host")
 r = redis.StrictRedis(host=redis_host)
 
 def main(event, context):
+    #get list of urls from db
+    #for each url in db, processRace(url)
     print("do stuff")
+
+def processRace(url):
+    print("processing ", url)
+    #html = Get race http page
+    #if registrationOpen(html)
+      # Send notification, Registration is Open
+    #elsif isNextEventAvailable(html)
+      #nexturl = getRedirectURL(getNextEventURL(html))
+      #replaceURL(url, nexturl)
+      #processRace(nexturl)
 
 def setURL(url, setName):
     print("posting ", url, " to the Redis db")
@@ -24,7 +36,7 @@ def delURL(url, setName):
     print("deleting ", url, " from the Redis db")
     r.srem(setName, url)
 
-def replaceURL(url, url2, setName):
+def replaceURL(url, url2, setName='ultrasignupNotifier'):
     print("replace ", url, " with ", url2)
     delURL(url,setName)
     setURL(url2,setName)
