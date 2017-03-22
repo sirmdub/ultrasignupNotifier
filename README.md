@@ -4,8 +4,9 @@ to watch ultrasignup for race registration opening
 
 ### Todo
 
+- [ ] Main Script
 - [ ] Docker Build
-- [ ]
+- [ ] Deploy Script
 
 ### Race Registration Check Workflow
 * Get race http page
