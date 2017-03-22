@@ -35,3 +35,6 @@ def registrationOpen(html):
 def isNextEventAvailable(html):
     searchObj = re.search( r'See the \d{4} event', html, re.I)
     return True if searchObj else False
+
+def getNextEventURL(html):
+    return "i got nothing"

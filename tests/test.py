@@ -64,5 +64,10 @@ else:
     raise Exception("FAILED: isNextEventAvailable on closed.html does not identify correctly")
 
 
+if getNextEventURL(fileToString('tests/previous.html')) == "/register.aspx?eid=4327":
+    print("getNextEventURL PASS")
+else:
+    raise Exception("FAILED: getNextEventURL on previous.html does not find '/register.aspx?eid=4327'")
+
 #url gets replaced in db, when its identified as a previous race
 #new url gets tested after its identified and replaced

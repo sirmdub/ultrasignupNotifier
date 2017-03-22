@@ -12,5 +12,6 @@ to watch ultrasignup for race registration opening
   * Send notification, Registration is Open
 * If "This Event Took Place"
   * Get link to "See the 20xx event"
+  * Test link for redirects, follow them to the end
   * Update URL that is checked to latest
   * Restart function
