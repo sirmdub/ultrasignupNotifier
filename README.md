@@ -4,6 +4,7 @@ to watch ultrasignup for race registration opening
 
 ### Todo
 
+- [ ] Store/Retrieve urls in Redis
 - [ ] Docker Build
 - [ ] Deploy Script
 
