@@ -71,6 +71,14 @@ else:
     print("getNextEventURL returned: ", testgetNextEventURL)
     raise Exception("FAILED: getNextEventURL on previous.html does not find '/register.aspx?eid=4327'")
 
+testgetNextEventURL = getNextEventURL(fileToString('tests/closed.html'))
+if testgetNextEventURL == "i got nothing":
+    print("getNextEventURL PASS")
+else:
+    print("getNextEventURL returned: ", testgetNextEventURL)
+    raise Exception("FAILED: getNextEventURL on closed.html found something, but shouldn't have")
+
+
 if getRedirectURL('http://ultrasignup.com/register.aspx?eid=4327') == "https://ultrasignup.com/register.aspx?did=41232":
     print("getRedirectURL PASS")
 else:

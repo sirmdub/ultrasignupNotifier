@@ -37,6 +37,7 @@ def isNextEventAvailable(html):
     return True if searchObj else False
 
 def getNextEventURL(html):
+    #I'm sure lxml and xpath is the way to go... tried xpath for too long, when a simple regex gets it done
     searchObj = re.search( r'ContentPlaceHolder1_hlCurrentEventPage" class="errormessage" href="/register.aspx\?eid=\d+"', html)
     if searchObj:
         searchObj2 = re.search(r'/register.aspx\?eid=\d+', searchObj.group())
