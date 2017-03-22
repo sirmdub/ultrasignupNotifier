@@ -21,6 +21,9 @@ def setURL(url):
 
 def delURL(url):
     print("deleting ", url, " from the Redis db")
+    r.srem("ultrasignupNotifier_TEST", url)
 
 def replaceURL(url, url2):
     print("replace ", url, " with ", url2)
+    delURL(url)
+    setURL(url2)
