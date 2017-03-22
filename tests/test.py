@@ -47,7 +47,22 @@ if not registrationOpen(fileToString('tests/previous.html')):
 else:
     raise Exception("FAILED: registrationOpen on previous.html thinks a closed race is open for registration")
 
-#previous test cases
 #identify its a previous race
+if isNextEventAvailable(fileToString('tests/previous.html')):
+    print("isNextEventAvailable True on previous.html")
+else:
+    raise Exception("FAILED: isNextEventAvailable on previous.html does not identify correctly")
+
+if not isNextEventAvailable(fileToString('tests/open.html')):
+    print("isNextEventAvailable False on open.html")
+else:
+    raise Exception("FAILED: isNextEventAvailable on open.html does not identify correctly")
+
+if not isNextEventAvailable(fileToString('tests/closed.html')):
+    print("isNextEventAvailable False on closed.html")
+else:
+    raise Exception("FAILED: isNextEventAvailable on closed.html does not identify correctly")
+
+
 #url gets replaced in db, when its identified as a previous race
 #new url gets tested after its identified and replaced

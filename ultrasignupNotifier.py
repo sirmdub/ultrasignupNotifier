@@ -3,6 +3,7 @@ import requests
 import logging
 import ConfigParser
 import redis
+import re
 
 logger = logging.getLogger()
 logger.setLevel(logging.ERROR)
@@ -30,3 +31,7 @@ def replaceURL(url, url2, setName):
 
 def registrationOpen(html):
     return True if "Registration closes" in html else False
+
+def isNextEventAvailable(html):
+    searchObj = re.search( r'See the \d{4} event', html, re.I)
+    return True if searchObj else False
