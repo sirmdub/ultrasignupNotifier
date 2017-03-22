@@ -1,6 +1,12 @@
 #!/bin/python
-
 from ultrasignupNotifier import *
+
+def fileToString(fileName):
+    f = open(fileName, 'r')
+    returnString = f.read()
+    f.close()
+    return returnString
+
 
 setName = "ultrasignupNotifier_TEST"
 
@@ -18,6 +24,7 @@ delURL("http://somethingelse", setName)
 if r.sismember(setName, "http://somethingelse"):
     raise Exception("FAILED: delURL did not remove URL from db")
 
+
 if not registrationOpen("<html><itsOPEN>Registration closes</itsOPEN></html>"):
     raise Exception("FAILED: registrationOpen thinks an open race is not open for registration")
 
@@ -25,6 +32,20 @@ if registrationOpen("<html><itsNOT>Registration Opens</itsNOT></html>"):
     raise Exception("FAILED: registrationOpen thinks a closed race is open for registration")
 
 #test registrationOpen on html files (open, closed, previous, soldout)
+if registrationOpen(fileToString('tests/open.html')):
+    print("registrationOpen True on open.html")
+else:
+    raise Exception("FAILED: registrationOpen on open.html thinks an open race is not open for registration")
+
+if not registrationOpen(fileToString('tests/closed.html')):
+    print("registrationOpen False on closed.html")
+else:
+    raise Exception("FAILED: registrationOpen on closed.html thinks a closed race is open for registration")
+
+if not registrationOpen(fileToString('tests/previous.html')):
+    print("registrationOpen False on previous.html")
+else:
+    raise Exception("FAILED: registrationOpen on previous.html thinks a closed race is open for registration")
 
 #previous test cases
 #identify its a previous race
