@@ -14,12 +14,11 @@ redis_host = config.get("access", "redis_host")
 r = redis.StrictRedis(host=redis_host)
 defaultsetName = 'ultrasignupNotifier'
 
-def main(event, context):
-    #get list of urls from db
-    #for each url in db,
-    #html = Get race http page
-    #processRace(html)
-    print("do stuff")
+def main(event, context, setName=defaultsetName):
+    for url in r.smembers(setName):
+        print("processing" + url)
+        processRace(getPage(url), url)
+
 
 def processRace(html, url=None, setName=defaultsetName):
     if registrationOpen(html):

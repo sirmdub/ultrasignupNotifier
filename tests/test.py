@@ -123,3 +123,13 @@ else:
 
 #test that notification is called?
 #new url gets tested after its identified and replaced
+
+###############ALL UNIT TESTS PASS###############
+###############FUNCTIONALLY TEST MAIN NOW###############
+setName = "ultrasignupNotifier_FUNCTIONAL"
+setURL("https://ultrasignup.com/register.aspx?did=40347", setName)
+setURL("https://ultrasignup.com/register.aspx?did=34630", setName)
+setURL("https://ultrasignup.com/register.aspx?did=43215", setName)
+setURL("https://ultrasignup.com/register.aspx?did=44227", setName)
+
+main(None, None, setName)
