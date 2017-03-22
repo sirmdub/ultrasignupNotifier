@@ -17,3 +17,9 @@ if not r.sismember(setName, "http://somethingelse"):
 delURL("http://somethingelse", setName)
 if r.sismember(setName, "http://somethingelse"):
     raise Exception("FAILED: delURL did not remove URL from db")
+
+if not registrationOpen("<html><itsOPEN>Registration closes</itsOPEN></html>"):
+    raise Exception("FAILED: registrationOpen thinks an open race is not open for registration")
+
+if registrationOpen("<html><itsNOT>Registration Opens</itsNOT></html>"):
+    raise Exception("FAILED: registrationOpen thinks a closed race is open for registration")

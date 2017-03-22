@@ -27,3 +27,6 @@ def replaceURL(url, url2, setName):
     print("replace ", url, " with ", url2)
     delURL(url,setName)
     setURL(url2,setName)
+
+def registrationOpen(html):
+    return True if "Registration closes" in html else False
