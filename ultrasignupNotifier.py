@@ -36,15 +36,15 @@ def processRace(html, url=None, setName=defaultsetName):
     return processRaceStatus
 
 def setURL(url, setName):
-    print("posting ", url, " to the Redis db")
+    print("posting ", url, " to the Redis db", setName)
     r.sadd(setName, url)
 
 def delURL(url, setName):
-    print("deleting ", url, " from the Redis db")
+    print("deleting ", url, " from the Redis db", setName)
     r.srem(setName, url)
 
 def replaceURL(url, url2, setName=defaultsetName):
-    print("replace ", url, " with ", url2)
+    print("replace ", url, " with ", url2, setName)
     delURL(url,setName)
     setURL(url2,setName)
 
