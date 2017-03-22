@@ -31,7 +31,8 @@ def processRace(html, url=None, setName=defaultsetName):
             nexturl = getRedirectURL('https://ultrasignup.com' + getNextEventURL(html))
             replaceURL(url, nexturl, setName)
             processRaceStatus = 'previous'
-            #processRace(nexturl)
+            print("next event is available, calling processRace on: " + nexturl)
+            processRace(getPage(nexturl), nexturl, setName)
     return processRaceStatus
 
 def setURL(url, setName):
@@ -66,3 +67,7 @@ def getNextEventURL(html):
 def getRedirectURL(url):
     page = requests.get(url)
     return page.url
+
+def getPage(url):
+    page = requests.get(url)
+    return page.text
