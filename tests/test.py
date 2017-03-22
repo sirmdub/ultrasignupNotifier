@@ -108,7 +108,7 @@ else:
     print("processRace returned: ", testprocessRace)
     raise Exception("FAILED: processRace on closed.html did not return closed")
 
-testprocessRace = processRace(fileToString('tests/previous.html'))
+testprocessRace = processRace(fileToString('tests/previous.html'), setName=setName)
 if testprocessRace == 'previous':
     print("testprocessRace PASS")
 else:
@@ -116,4 +116,10 @@ else:
     raise Exception("FAILED: processRace on previous.html did not return previous")
 
 #url gets replaced in db, when its identified as a previous race
+if r.sismember(setName, "https://ultrasignup.com/register.aspx?did=41232"):
+    print("processRace on previous.html replaces URL in db PASS")
+else:
+    raise Exception("FAILED: processRace on previous.html did not set new URL in db")
+
+#test that notification is called?
 #new url gets tested after its identified and replaced

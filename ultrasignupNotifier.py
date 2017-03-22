@@ -12,6 +12,7 @@ config = ConfigParser.ConfigParser()
 config.read('config.ini')
 redis_host = config.get("access", "redis_host")
 r = redis.StrictRedis(host=redis_host)
+defaultsetName = 'ultrasignupNotifier'
 
 def main(event, context):
     #get list of urls from db
@@ -20,7 +21,7 @@ def main(event, context):
     #processRace(html)
     print("do stuff")
 
-def processRace(html, url=None):
+def processRace(html, url=None, setName=defaultsetName):
     if registrationOpen(html):
         processRaceStatus = 'open'
         # Send notification, Registration is Open
@@ -28,7 +29,7 @@ def processRace(html, url=None):
         processRaceStatus = 'closed'
         if isNextEventAvailable(html):
             nexturl = getRedirectURL('https://ultrasignup.com' + getNextEventURL(html))
-            replaceURL(url, nexturl)
+            replaceURL(url, nexturl, setName)
             processRaceStatus = 'previous'
             #processRace(nexturl)
     return processRaceStatus
@@ -41,7 +42,7 @@ def delURL(url, setName):
     print("deleting ", url, " from the Redis db")
     r.srem(setName, url)
 
-def replaceURL(url, url2, setName='ultrasignupNotifier'):
+def replaceURL(url, url2, setName=defaultsetName):
     print("replace ", url, " with ", url2)
     delURL(url,setName)
     setURL(url2,setName)
