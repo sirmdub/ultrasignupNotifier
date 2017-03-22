@@ -66,14 +66,14 @@ else:
 
 testgetNextEventURL = getNextEventURL(fileToString('tests/previous.html'))
 if testgetNextEventURL == "/register.aspx?eid=4327":
-    print("getNextEventURL PASS")
+    print("getNextEventURL on previous.html PASS")
 else:
     print("getNextEventURL returned: ", testgetNextEventURL)
     raise Exception("FAILED: getNextEventURL on previous.html does not find '/register.aspx?eid=4327'")
 
 testgetNextEventURL = getNextEventURL(fileToString('tests/closed.html'))
 if testgetNextEventURL == "i got nothing":
-    print("getNextEventURL PASS")
+    print("getNextEventURL on closed.html PASS")
 else:
     print("getNextEventURL returned: ", testgetNextEventURL)
     raise Exception("FAILED: getNextEventURL on closed.html found something, but shouldn't have")
@@ -81,14 +81,14 @@ else:
 
 testgetRedirectURL = getRedirectURL('http://ultrasignup.com/register.aspx?eid=4327')
 if testgetRedirectURL == "http://ultrasignup.com/register.aspx?did=41232":
-    print("getRedirectURL PASS")
+    print("getRedirectURL http PASS")
 else:
     print("getRedirectURL returned: ", testgetRedirectURL)
     raise Exception("FAILED: getRedirectURL on 'http://ultrasignup.com/register.aspx?eid=4327' does not find 'http://ultrasignup.com/register.aspx?did=41232'")
 
 testgetRedirectURL = getRedirectURL('https://ultrasignup.com/register.aspx?eid=4327')
 if testgetRedirectURL == "https://ultrasignup.com/register.aspx?did=41232":
-    print("getRedirectURL PASS")
+    print("getRedirectURL https PASS")
 else:
     print("getRedirectURL returned: ", testgetRedirectURL)
     raise Exception("FAILED: getRedirectURL on 'https://ultrasignup.com/register.aspx?eid=4327' does not find 'https://ultrasignup.com/register.aspx?did=41232'")
@@ -96,21 +96,21 @@ else:
 
 testprocessRace = processRace(fileToString('tests/open.html'))
 if testprocessRace == 'open':
-    print("testprocessRace PASS")
+    print("testprocessRace on open.html PASS")
 else:
     print("processRace returned: ", testprocessRace)
     raise Exception("FAILED: processRace on open.html did not return open")
 
 testprocessRace = processRace(fileToString('tests/closed.html'))
 if testprocessRace == 'closed':
-    print("testprocessRace PASS")
+    print("testprocessRace on closed.html PASS")
 else:
     print("processRace returned: ", testprocessRace)
     raise Exception("FAILED: processRace on closed.html did not return closed")
 
 testprocessRace = processRace(fileToString('tests/previous.html'), setName=setName)
 if testprocessRace == 'previous':
-    print("testprocessRace PASS")
+    print("testprocessRace on previous.html PASS")
 else:
     print("processRace returned: ", testprocessRace)
     raise Exception("FAILED: processRace on previous.html did not return previous")
