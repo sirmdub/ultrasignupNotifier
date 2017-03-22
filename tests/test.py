@@ -2,6 +2,8 @@
 
 from ultrasignupNotifier import *
 
-setURL("http://something")
-replaceURL("http://something", "http://somethingelse")
-delURL("http://somethingelse")
+setURL("http://something", "ultrasignupNotifier_TEST")
+#if not r.sismember("", i):
+
+replaceURL("http://something", "http://somethingelse", "ultrasignupNotifier_TEST")
+delURL("http://somethingelse", "ultrasignupNotifier_TEST")
