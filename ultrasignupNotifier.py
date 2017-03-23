@@ -14,15 +14,18 @@ config.read('config.ini')
 redis_host = config.get("access", "redis_host")
 hipchat_token = config.get("access","hipchat_token")
 r = redis.StrictRedis(host=redis_host)
+
 defaultsetName = 'ultrasignupNotifier'
+defaulthipchat_room = 'Running Group'
+
 
 def main(event, context, setName=defaultsetName):
     for url in r.smembers(setName):
         print("processing" + url)
-        processRace(getPage(url), url)
+        processRace(getPage(url), url, setName=setName)
 
 
-def processRace(html, url=None, setName=defaultsetName):
+def processRace(html, url=None, setName=defaultsetName, hipchat_room=defaulthipchat_room):
     if registrationOpen(html):
         processRaceStatus = 'open'
         # Send notification, Registration is Open
