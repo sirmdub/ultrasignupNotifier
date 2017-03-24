@@ -27,7 +27,9 @@ def main(event, context):
 def processRace(html, url=None):
     if registrationOpen(html):
         processRaceStatus = 'open'
-        # if url: hipchat_notify(room=hipchat_room, message=url)
+        if url:
+            print("hipchat_notify(room=" + hipchat_room + ", message=" + url + ")")
+            hipchat_notify(room=hipchat_room, message=url)
     else:
         processRaceStatus = 'closed'
         if isNextEventAvailable(html):
@@ -75,14 +77,12 @@ def getPage(url):
     page = requests.get(url)
     return page.text
 
-def hipchat_notify(token, room, message, color='yellow', notify=False,
+def hipchat_notify(room, message, color='yellow', notify=False,
                    format='text', host='api.hipchat.com'):
     """Send notification to a HipChat room via API version 2
 
     Parameters
     ----------
-    token : str
-        HipChat API version 2 compatible token (room or user token)
     room: str
         Name or API ID of the room to notify
     message: str
@@ -110,7 +110,7 @@ def hipchat_notify(token, room, message, color='yellow', notify=False,
 
     url = "https://{0}/v2/room/{1}/share/link".format(host, room)
     headers = {'Content-type': 'application/json'}
-    headers['Authorization'] = "Bearer " + token
+    headers['Authorization'] = "Bearer " + hipchat_token
     payload = {
         'message': '@all',
         'link': message,

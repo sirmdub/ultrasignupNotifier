@@ -123,6 +123,8 @@ else:
 #new url gets tested after its identified and replaced
 
 ###############ALL UNIT TESTS PASS###############
+r.delete(redis_set)
+
 ###############FUNCTIONALLY TEST MAIN NOW###############
 setURL("https://ultrasignup.com/register.aspx?did=40347", redis_set)
 setURL("https://ultrasignup.com/register.aspx?did=34630", redis_set)
