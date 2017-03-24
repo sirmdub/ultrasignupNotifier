@@ -12,20 +12,19 @@ logger.setLevel(logging.ERROR)
 config = ConfigParser.ConfigParser()
 config.read('config.ini')
 redis_host = config.get("access", "redis_host")
+redis_set = config.get("access", "redis_set")
 hipchat_token = config.get("access","hipchat_token")
 hipchat_room = config.get("access", "hipchat_room")
 r = redis.StrictRedis(host=redis_host)
 
-defaultsetName = 'ultrasignupNotifier'
 
-
-def main(event, context, setName=defaultsetName):
-    for url in r.smembers(setName):
+def main(event, context):
+    for url in r.smembers(redis_set):
         print("processing" + url)
-        processRace(getPage(url), url, setName=setName)
+        processRace(getPage(url), url)
 
 
-def processRace(html, url=None, setName=defaultsetName):
+def processRace(html, url=None):
     if registrationOpen(html):
         processRaceStatus = 'open'
         # if url: hipchat_notify(room=hipchat_room, message=url)
@@ -33,24 +32,24 @@ def processRace(html, url=None, setName=defaultsetName):
         processRaceStatus = 'closed'
         if isNextEventAvailable(html):
             nexturl = getRedirectURL('https://ultrasignup.com' + getNextEventURL(html))
-            replaceURL(url, nexturl, setName)
+            replaceURL(url, nexturl, redis_set)
             processRaceStatus = 'previous'
             print("next event is available, calling processRace on: " + nexturl)
-            processRace(getPage(nexturl), nexturl, setName)
+            processRace(getPage(nexturl), nexturl)
     return processRaceStatus
 
-def setURL(url, setName):
-    print("posting ", url, " to the Redis db", setName)
-    r.sadd(setName, url)
+def setURL(url, redis_set):
+    print("posting ", url, " to the Redis db", redis_set)
+    r.sadd(redis_set, url)
 
-def delURL(url, setName):
-    print("deleting ", url, " from the Redis db", setName)
-    r.srem(setName, url)
+def delURL(url, redis_set):
+    print("deleting ", url, " from the Redis db", redis_set)
+    r.srem(redis_set, url)
 
-def replaceURL(url, url2, setName=defaultsetName):
-    print("replace ", url, " with ", url2, setName)
-    delURL(url,setName)
-    setURL(url2,setName)
+def replaceURL(url, url2, redis_set):
+    print("replace ", url, " with ", url2, redis_set)
+    delURL(url,redis_set)
+    setURL(url2,redis_set)
 
 def registrationOpen(html):
     return True if "Registration closes" in html else False

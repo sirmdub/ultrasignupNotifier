@@ -8,20 +8,18 @@ def fileToString(fileName):
     return returnString
 
 
-setName = "ultrasignupNotifier_TEST"
-
-setURL("http://something", setName)
-if not r.sismember(setName, "http://something"):
+setURL("http://something", redis_set)
+if not r.sismember(redis_set, "http://something"):
     raise Exception("FAILED: setURL did not set URL in db")
 
-replaceURL("http://something", "http://somethingelse", setName)
-if r.sismember(setName, "http://something"):
+replaceURL("http://something", "http://somethingelse", redis_set)
+if r.sismember(redis_set, "http://something"):
     raise Exception("FAILED: replaceURL did not remove original URL from db")
-if not r.sismember(setName, "http://somethingelse"):
+if not r.sismember(redis_set, "http://somethingelse"):
     raise Exception("FAILED: replaceURL did not set new URL in db")
 
-delURL("http://somethingelse", setName)
-if r.sismember(setName, "http://somethingelse"):
+delURL("http://somethingelse", redis_set)
+if r.sismember(redis_set, "http://somethingelse"):
     raise Exception("FAILED: delURL did not remove URL from db")
 
 
@@ -108,7 +106,7 @@ else:
     print("processRace returned: ", testprocessRace)
     raise Exception("FAILED: processRace on closed.html did not return closed")
 
-testprocessRace = processRace(fileToString('tests/previous.html'), setName=setName)
+testprocessRace = processRace(fileToString('tests/previous.html'))
 if testprocessRace == 'previous':
     print("testprocessRace on previous.html PASS")
 else:
@@ -116,7 +114,7 @@ else:
     raise Exception("FAILED: processRace on previous.html did not return previous")
 
 #url gets replaced in db, when its identified as a previous race
-if r.sismember(setName, "https://ultrasignup.com/register.aspx?did=41232"):
+if r.sismember(redis_set, "https://ultrasignup.com/register.aspx?did=41232"):
     print("processRace on previous.html replaces URL in db PASS")
 else:
     raise Exception("FAILED: processRace on previous.html did not set new URL in db")
@@ -126,10 +124,9 @@ else:
 
 ###############ALL UNIT TESTS PASS###############
 ###############FUNCTIONALLY TEST MAIN NOW###############
-setName = "ultrasignupNotifier_FUNCTIONAL"
-setURL("https://ultrasignup.com/register.aspx?did=40347", setName)
-setURL("https://ultrasignup.com/register.aspx?did=34630", setName)
-setURL("https://ultrasignup.com/register.aspx?did=43215", setName)
-setURL("https://ultrasignup.com/register.aspx?did=44227", setName)
+setURL("https://ultrasignup.com/register.aspx?did=40347", redis_set)
+setURL("https://ultrasignup.com/register.aspx?did=34630", redis_set)
+setURL("https://ultrasignup.com/register.aspx?did=43215", redis_set)
+setURL("https://ultrasignup.com/register.aspx?did=44227", redis_set)
 
-main(None, None, setName)
+main(None, None)
