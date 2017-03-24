@@ -9,7 +9,6 @@ def fileToString(fileName):
 
 
 setName = "ultrasignupNotifier_TEST"
-testhipchat_room = "mdub only"
 
 setURL("http://something", setName)
 if not r.sismember(setName, "http://something"):
@@ -95,21 +94,21 @@ else:
     raise Exception("FAILED: getRedirectURL on 'https://ultrasignup.com/register.aspx?eid=4327' does not find 'https://ultrasignup.com/register.aspx?did=41232'")
 
 
-testprocessRace = processRace(fileToString('tests/open.html'), hipchat_room=testhipchat_room)
+testprocessRace = processRace(fileToString('tests/open.html'))
 if testprocessRace == 'open':
     print("testprocessRace on open.html PASS")
 else:
     print("processRace returned: ", testprocessRace)
     raise Exception("FAILED: processRace on open.html did not return open")
 
-testprocessRace = processRace(fileToString('tests/closed.html'), hipchat_room=testhipchat_room)
+testprocessRace = processRace(fileToString('tests/closed.html'))
 if testprocessRace == 'closed':
     print("testprocessRace on closed.html PASS")
 else:
     print("processRace returned: ", testprocessRace)
     raise Exception("FAILED: processRace on closed.html did not return closed")
 
-testprocessRace = processRace(fileToString('tests/previous.html'), setName=setName, hipchat_room=testhipchat_room)
+testprocessRace = processRace(fileToString('tests/previous.html'), setName=setName)
 if testprocessRace == 'previous':
     print("testprocessRace on previous.html PASS")
 else:

@@ -13,10 +13,10 @@ config = ConfigParser.ConfigParser()
 config.read('config.ini')
 redis_host = config.get("access", "redis_host")
 hipchat_token = config.get("access","hipchat_token")
+hipchat_room = config.get("access", "hipchat_room")
 r = redis.StrictRedis(host=redis_host)
 
 defaultsetName = 'ultrasignupNotifier'
-defaulthipchat_room = 'Running Group'
 
 
 def main(event, context, setName=defaultsetName):
@@ -25,10 +25,10 @@ def main(event, context, setName=defaultsetName):
         processRace(getPage(url), url, setName=setName)
 
 
-def processRace(html, url=None, setName=defaultsetName, hipchat_room=defaulthipchat_room):
+def processRace(html, url=None, setName=defaultsetName):
     if registrationOpen(html):
         processRaceStatus = 'open'
-        # Send notification, Registration is Open
+        # if url: hipchat_notify(room=hipchat_room, message=url)
     else:
         processRaceStatus = 'closed'
         if isNextEventAvailable(html):
