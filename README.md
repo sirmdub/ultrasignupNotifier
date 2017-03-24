@@ -4,8 +4,8 @@ to watch ultrasignup for race registration opening
 
 ### Todo
 
-- [ ] SNS code
-- [ ] Deploy Script
+* Notify pulled into its own def?
+  * SNS figure out how to do http notification to Hipchat
 
 ### Race Registration Check Workflow
 * Get race http page
