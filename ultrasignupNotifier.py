@@ -20,7 +20,7 @@ r = redis.StrictRedis(host=redis_host)
 
 def main(event, context):
     for url in r.smembers(redis_set):
-        print("processing" + url)
+        print("processing " + url)
         processRace(getPage(url), url)
 
 
