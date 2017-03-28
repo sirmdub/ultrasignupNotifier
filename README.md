@@ -6,6 +6,7 @@ to watch ultrasignup for race registration opening
 
 * Notify pulled into its own def?
   * SNS figure out how to do http notification to Hipchat
+* API Gateway App to monitor / manage the data
 
 ### Race Registration Check Workflow
 * Get race http page
