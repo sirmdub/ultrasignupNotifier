@@ -33,6 +33,8 @@ def processRace(html, url=None):
         if url:
             print("hipchat_notify(room=" + hipchat_room + ", message=" + url + ")")
             hipchat_notify(room=hipchat_room, message=url)
+            print("sns_notify(TopicArn=TopicArn, Message=" + url + ", Subject=\"ultrasignup race registration open!\")")
+            sns_notify(TopicArn=TopicArn, Message=url, Subject="ultrasignup race registration open!")
     else:
         processRaceStatus = 'closed'
         if isNextEventAvailable(html):
