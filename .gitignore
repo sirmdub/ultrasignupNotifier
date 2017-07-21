@@ -1,2 +1,3 @@
 config.ini
 !/tests/config.ini
+/tests/aws_secrets.txt
