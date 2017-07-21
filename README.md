@@ -4,6 +4,7 @@ to watch ultrasignup for race registration opening
 
 ### Todo
 
+* tests/comingsoon.htm needs tests in test.py
 * getNextEventURL returns "i got nothing", which could fail silently. FIX!
 * Need to check if anything other than 200? Does this fail silently for example, 40x, 50x?
 * Cloudwatch alarm setup with deploy?
