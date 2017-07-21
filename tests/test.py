@@ -130,5 +130,6 @@ setURL("https://ultrasignup.com/register.aspx?did=40347", redis_set)
 setURL("https://ultrasignup.com/register.aspx?did=34630", redis_set)
 setURL("https://ultrasignup.com/register.aspx?did=43215", redis_set)
 setURL("https://ultrasignup.com/register.aspx?did=44227", redis_set)
+setURL("https://ultrasignup.com/register.aspx?did=44380", redis_set)
 
 main(None, None)
