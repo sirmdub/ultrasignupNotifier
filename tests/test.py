@@ -120,6 +120,8 @@ else:
     raise Exception("FAILED: processRace on previous.html did not set new URL in db")
 
 #test that notification is called?
+snstest_response = sns_notify(TopicArn, 'test ultrasignup message', 'test ultrasignup message')
+print("sns_notify returns: ", snstest_response)
 #new url gets tested after its identified and replaced
 
 ###############ALL UNIT TESTS PASS###############

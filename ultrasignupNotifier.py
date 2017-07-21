@@ -5,6 +5,7 @@ import ConfigParser
 import redis
 import re
 import json
+import boto3
 
 logger = logging.getLogger()
 logger.setLevel(logging.ERROR)
@@ -15,8 +16,10 @@ redis_host = config.get("access", "redis_host")
 redis_set = config.get("access", "redis_set")
 hipchat_token = config.get("access","hipchat_token")
 hipchat_room = config.get("access", "hipchat_room")
+TopicArn = config.get("access", "TopicArn")
 r = redis.StrictRedis(host=redis_host)
 
+snsclient = boto3.client('sns')
 
 def main(event, context):
     for url in r.smembers(redis_set):
@@ -120,3 +123,11 @@ def hipchat_notify(room, message, color='yellow', notify=False,
     }
     r = requests.post(url, data=json.dumps(payload), headers=headers)
     r.raise_for_status()
+
+def sns_notify(TopicArn, Message, Subject):
+    snsresponse = snsclient.publish(
+        TopicArn=TopicArn,
+        Message=Message,
+        Subject=Subject
+    )
+    return snsresponse
