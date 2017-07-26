@@ -1,2 +1,4 @@
-aws lambda update-function-code --function-name ultrasignupNotifier --zip-file fileb:///tmp/ultrasignupNotifier.zip --profile myawsprofile
+#!/bin/bash
 
+source aws_secrets.txt
+docker run -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_DEFAULT_REGION ultrasignupnotifier:deploy

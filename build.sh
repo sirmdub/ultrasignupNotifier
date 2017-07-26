@@ -1,9 +1,7 @@
 #!/bin/bash
 
 docker build -t ultrasignupnotifier:build .
-docker create --name ultrasignupnotifierBuild ultrasignupnotifier:build
-docker cp ultrasignupnotifierBuild:/usr/src/app/ultrasignupNotifier.zip /tmp/
-docker rm ultrasignupnotifierBuild
+docker build -t ultrasignupnotifier:deploy . -f Dockerfile.deploy
 
 cd tests
 docker build -t ultrasignupnotifier:test .

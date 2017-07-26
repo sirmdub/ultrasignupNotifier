@@ -1,0 +1,6 @@
+FROM python:2-alpine
+
+RUN pip install awscli
+COPY --from=ultrasignupnotifier:build /usr/src/app/ultrasignupNotifier.zip /
+
+CMD aws lambda update-function-code --function-name ultrasignupNotifier --zip-file fileb://ultrasignupNotifier.zip 
