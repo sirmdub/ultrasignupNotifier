@@ -11,7 +11,7 @@ RUN pip install -r requirements.txt -t .
 COPY . /usr/src/app
 RUN chmod +x *.py
 
-RUN zip -r ultrasignupNotifier.zip . -x *.git*
+RUN zip -r ultrasignupNotifier.zip . -x *.git* *tests\/*
 
 ENTRYPOINT [ "python" ]
 CMD [ "./run.py" ]
