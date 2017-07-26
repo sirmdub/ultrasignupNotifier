@@ -4,7 +4,7 @@
 #if doing local test, use the ultrasignupnotifier:test tag, and make sure some-redis is running
 #docker run --link some-redis:redis -it ultrasignupnotifier:test load.py
 #if doing prod load, use the ultrasignupnotifier:build tag
-##source tests/aws_secrets.txt
+##source aws_secrets.txt
 ##docker run -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_DEFAULT_REGION -it --entrypoint sh ultrasignupnotifier:build load.py
 
 from ultrasignupNotifier import *

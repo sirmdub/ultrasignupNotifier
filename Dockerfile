@@ -11,7 +11,7 @@ RUN pip install -r requirements.txt -t .
 COPY . /usr/src/app
 RUN chmod +x *.py
 
-RUN zip -r ultrasignupNotifier.zip . -x *.git* *tests\/*
+RUN zip -r ultrasignupNotifier.zip . -x *.git* *tests\/* aws_secrets.txt
 
 ENTRYPOINT [ "python" ]
 CMD [ "./run.py" ]
