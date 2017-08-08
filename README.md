@@ -5,7 +5,6 @@ to watch ultrasignup for race registration opening
 ### Todo
 
 * a redirect test that does > 1 redirect (aka 2015-2016-2017)
-* consider multistage builds (https://docs.docker.com/engine/userguide/eng-image/multistage-build/)
 * tests/comingsoon.htm needs tests in test.py
 * getNextEventURL returns "i got nothing", which could fail silently. FIX!
 * Need to check if anything other than 200? Does this fail silently for example, 40x, 50x?
