@@ -11,7 +11,7 @@ from ultrasignupNotifier import *
 
 r.delete(redis_set)
 #no business
-setURL("https://ultrasignup.com/register.aspx?did=40347", redis_set)
+#setURL("https://ultrasignup.com/register.aspx?did=40347", redis_set)
 #bfc 2016 -> should redirect to 2017
 setURL("https://ultrasignup.com/register.aspx?did=34630", redis_set)
 #upchuck

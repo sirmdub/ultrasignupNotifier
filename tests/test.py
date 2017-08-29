@@ -35,6 +35,11 @@ if registrationOpen(fileToString('tests/open.html')):
 else:
     raise Exception("FAILED: registrationOpen on open.html thinks an open race is not open for registration")
 
+if registrationOpen(fileToString('tests/open_noclosedate.html')):
+    print("registrationOpen True on open_noclosedate.html")
+else:
+    raise Exception("FAILED: registrationOpen on open_noclosedate.html thinks an open race is not open for registration")
+
 if not registrationOpen(fileToString('tests/closed.html')):
     print("registrationOpen False on closed.html")
 else:
