@@ -23,12 +23,6 @@ if r.sismember(redis_set, "http://somethingelse"):
     raise Exception("FAILED: delURL did not remove URL from db")
 
 
-if not registrationOpen("<html><itsOPEN>Registration closes</itsOPEN></html>"):
-    raise Exception("FAILED: registrationOpen thinks an open race is not open for registration")
-
-if registrationOpen("<html><itsNOT>Registration Opens</itsNOT></html>"):
-    raise Exception("FAILED: registrationOpen thinks a closed race is open for registration")
-
 #test registrationOpen on html files (open, closed, previous, soldout)
 if registrationOpen(fileToString('tests/open.html')):
     print("registrationOpen True on open.html")
