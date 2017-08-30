@@ -59,7 +59,7 @@ def replaceURL(url, url2, redis_set):
     setURL(url2,redis_set)
 
 def registrationOpen(html):
-    return True if "Registration closes" in html else False
+    return True if ">Register" in html else False
 
 def isNextEventAvailable(html):
     searchObj = re.search( r'See the \d{4} event', html, re.I)
